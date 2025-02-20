@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import loginImage from "../../assets/pictures/img3.jpg";
+import loginImage from "../../assets/pictures/tea2.png";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -158,7 +158,7 @@ const ResetPassword = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -191,7 +191,7 @@ const ResetPassword = () => {
         <div className="text-center">
           <Link
             to="/login"
-            className="text-sm text-blue-500 hover:underline"
+            className="text-sm text-green-700 hover:text-black"
           >
             Back to Login
           </Link>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-function AdminProfile() {
+function UserProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -78,7 +78,7 @@ function AdminProfile() {
         setUserData(updatedData);
         setIsEditing(false);
         console.log('User data updated:', updatedData);
-        navigate(`/admin`);
+        navigate(`/user/predictions`);
       } else {
         console.error('Failed to update user data');
       }
@@ -131,7 +131,7 @@ function AdminProfile() {
             <div className="flex justify-center mt-8">
               <button
                 onClick={handleEditClick}
-                className="px-8 py-3 text-white bg-green-700 hover:bg-gray-700 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="px-8 py-3 text-white bg-green-700 hover:bg-black rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 Edit Profile
               </button>
@@ -206,7 +206,7 @@ function AdminProfile() {
               </button>
               <button
                 type="submit"
-                className="px-6 py-3 text-white bg-green-700 hover:bg-gray-700 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="px-6 py-3 text-white bg-green-700 hover:bg-black rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 Save Changes
               </button>
@@ -218,4 +218,4 @@ function AdminProfile() {
   );
 }
 
-export default AdminProfile;
+export default UserProfile;

@@ -57,7 +57,7 @@ const COLORS = [
 
 const BASE_URL = "http://127.0.0.1:8000";
 
-function AdminHome() {
+function UserHome() {
   const navigate = useNavigate();
 
   // State Management
@@ -160,7 +160,7 @@ function AdminHome() {
         // Fetch basic data
         const [usersRes, predictionsRes] = await Promise.all([
           fetch(`${BASE_URL}/users/`, { headers }),
-          fetch(`${BASE_URL}/irrigation/predictions/`, { headers }),
+          fetch(`${BASE_URL}/irrigation/my-predictions/`, { headers }),
         ]);
 
         const [usersData, predictionsData] = await Promise.all([
@@ -513,18 +513,7 @@ function AdminHome() {
         {/* Summary Cards */}
         {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-white text-sm">Total Users</p>
-              <h3 className="text-white text-2xl font-bold">
-                {userData.length}
-              </h3>
-              <p className="text-blue-100 text-xs mt-2">Active accounts</p>
-            </div>
-            <Users className="h-12 w-12 text-white opacity-75" />
-          </div>
-        </div>
+       
 
         <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg shadow-lg p-6">
           <div className="flex items-center justify-between">
@@ -561,49 +550,7 @@ function AdminHome() {
         </div>
       </div>
     
-        {/* User Analytics Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              User Registration Trends
-            </h3>
-            <div className="h-48">
-              <Bar data={chartData.histogram} options={chartOptions}>
-                <XAxis>
-                  <Label value="Time Period" offset={0} position="insideBottom" />
-                </XAxis>
-                <YAxis>
-                  <Label value="Number of Users" angle={-90} position="insideLeft" />
-                </YAxis>
-              </Bar>
-            </div>
-          </div>
-    
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              User Distribution
-            </h3>
-            <div className="h-48">
-              <Doughnut data={chartData.doughnut} options={doughnutOptions} />
-            </div>
-          </div>
-    
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Predictions by User Type
-            </h3>
-            <div className="h-48">
-              <Line data={chartData.waterfall} options={chartOptions}>
-                <XAxis>
-                  <Label value="User Type" offset={0} position="insideBottom" />
-                </XAxis>
-                <YAxis>
-                  <Label value="Predictions Count" angle={-90} position="insideLeft" />
-                </YAxis>
-              </Line>
-            </div>
-          </div>
-        </div>
+   
     
         {/* Analytics Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -612,10 +559,10 @@ function AdminHome() {
             <h3 className="text-lg font-semibold mb-4 text-black">
               Water Usage Trends
             </h3>
-            <div className="h-64">
-              {/* <p className="text-sm text-gray-600 mb-4">
+            <div className="h-64 py-4">
+              <p className="text-sm text-gray-600 mb-4">
                 Displays average water requirements over time. Higher peaks indicate increased irrigation needs during specific periods.
-              </p> */}
+              </p>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={waterUsageData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -643,10 +590,10 @@ function AdminHome() {
             <h3 className="text-lg font-semibold mb-4 text-black">
               Soil Health Metrics
             </h3>
-            <div className="h-64 md:h-80">
-              {/* <p className="text-sm text-gray-600 mb-4">
+            <div className="h-64 md:h-80 py-2">
+              <p className="text-sm text-gray-600 mb-4">
                 Shows distribution of soil nutrients and properties. Each segment represents different soil parameters, helping identify potential deficiencies.
-              </p> */}
+              </p>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -684,14 +631,14 @@ function AdminHome() {
           </div>
     
           {/* Weather Impact */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md py-16">
             <h3 className="text-lg font-semibold mb-4 text-black">
               Weather Impact
             </h3>
             <div className="h-64">
-              {/* <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-600 mb-4">
                 Compares different weather parameters affecting crop growth. Helps understand environmental conditions influence on irrigation needs.
-              </p> */}
+              </p>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={weatherData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -699,7 +646,7 @@ function AdminHome() {
                     <Label value="Weather Parameters" offset={0} position="insideBottom" />
                   </XAxis>
                   <YAxis>
-                    <Label value="Impact (%)" angle={-90} position="insideLeft" />
+                    <Label value="Impact %" angle={-90} position="insideLeft" />
                   </YAxis>
                   <RechartsTooltip />
                   <Area
@@ -715,14 +662,14 @@ function AdminHome() {
           </div>
     
           {/* Performance Metrics */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md py-16">
             <h3 className="text-lg font-semibold mb-4 text-black">
               Performance Metrics
             </h3>
-            <div className="h-64 mt-2">
-              {/* <p className="text-sm text-gray-600 mb-4">
+            <div className="h-64 mb-4 mt-16">
+              <p className="text-sm text-gray-600 mb-4">
                 Tracks performance scores across different aspects of irrigation management. Higher values indicate better efficiency in resource utilization.
-              </p> */}
+              </p>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={performanceData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -730,7 +677,7 @@ function AdminHome() {
                     <Label value="Metrics" offset={0} position="insideBottom" />
                   </XAxis>
                   <YAxis domain={[0, 100]}>
-                    <Label value="Efficiency Score (%)" angle={-90} position="insideLeft" className="mt-4" />
+                    <Label value="Efficiency Score (%)" angle={-90} position="insideLeft" />
                   </YAxis>
                   <RechartsTooltip />
                   <RechartsLegend />
@@ -814,4 +761,7 @@ function AdminHome() {
     
 }
 
-export default AdminHome;
+
+
+
+export default UserHome;

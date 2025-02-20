@@ -1,43 +1,53 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+// ResponsiveMenu.jsx
 import React from "react";
-import { FaUserCircle } from "react-icons/fa";
-
 import { MenuLinks } from "./Navbar";
-import { Link } from "react-router-dom";
 
-const ResponsiveMenu = ({ showMenu }) => {
-  console.log("showMenu", showMenu);
+const ResponsiveMenu = ({ showMenu, setShowMenu }) => {
+  const handleLinkClick = (e) => {
+    setShowMenu(false); // Close the menu when a link is clicked
+  };
+
+  const handleLinkedInClick = (e) => {
+    e.preventDefault(); // Prevent React Router from trying to handle this
+    setShowMenu(false); // Close the menu
+    window.open('https://www.linkedin.com/in/mugabe-prince-2b377621b/', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div
       className={`${
         showMenu ? "left-0" : "-left-[100%]"
-      } fixed bottom-0 top-0 z-20 flex h-screen w-[75%] flex-col justify-between bg-white dark:bg-gray-900 dark:text-white px-8 pb-6 pt-16 text-black transition-all duration-200 md:hidden rounded-r-xl shadow-md`}
+      } fixed bottom-0 top-0 z-20 flex h-screen w-[75%] flex-col justify-between bg-green-700 text-white px-8 pb-6 pt-16 transition-all duration-200 md:hidden rounded-r-xl shadow-md`}
     >
       <div className="card">
-        {/* <div className="flex items-center justify-start gap-3">
-          <FaUserCircle size={50} />
-          <div>
-            <h1>Hello User</h1>
-            <h1 className="text-sm text-slate-500">Premium user</h1>
-          </div>
-        </div> */}
-        <nav className="mt-12">
+        <nav className="mt-12 ">
           <ul className="space-y-4 text-xl">
             {MenuLinks.map((data) => (
               <li key={data.name}>
-                <a href={data.link} className="mb-5 inline-block">
+                <a 
+                  href={data.link} 
+                  className="mb-5 inline-block"
+                  onClick={handleLinkClick}
+                >
                   {data.name}
                 </a>
               </li>
             ))}
           </ul>
-          <Link to="/login" className="primary-btn">Login </Link>
         </nav>
       </div>
-      <div className="footer">
+      <div className="footer mt-8">
         <h1>
-          Made with ❤ by <a href="www.linkedin.com/in/mugabe-prince-2b377621b">Danny</a>{" "}
+          By{" "}
+          <a 
+            href="https://www.linkedin.com/in/mugabe-prince-2b377621b/"
+            onClick={handleLinkedInClick}
+            className="hover:text-gray-300 underline"
+          >
+            Nicole UWIKUNDA
+          </a>
         </h1>
       </div>
     </div>

@@ -29,39 +29,39 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between items-start gap-8 py-5">
           {/* Company Details */}
           <div className="flex-1 min-w-[250px] py-8 px-4">
-            <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
-              Volcano Expense Pro
+            <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3 text-white">
+             Our Contact
             </h1>
-            <p className="mt-4 text-gray-400">
+
+            <p className="mt-4 text-white">
               <strong>Phone:</strong> +250 788 457 408
             </p>
-            <p className="mt-2 text-gray-400">
-              <strong>Email:</strong> info@volcanoexpensepro.com
+            <p className="mt-2 text-white">
+              <strong>Email:</strong> princemugabe568@gmail.com
             </p>
-            <p className="mt-2 text-gray-400">
+            <p className="mt-2 text-whitey">
               <strong>Location:</strong> Kigali, Rwanda
             </p>
             
           </div>
 
-          {/* Links */}
           <div className="flex-1 min-w-[250px] py-8 px-4">
-            <h1 className="sm:text-xl text-xl font-bold sm:text-left text-justify mb-3">
-              Social Media
+          <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3 text-white">
+            Our Location
             </h1>
-            {/* Social Handle */}
-            <div className="flex items-center gap-4 mt-6">
-              <a href="https://www.instagram.com/mugabe50/">
-                <FaInstagram className="text-2xl text-red-600 hover:text-gray-600 duration-300" />
-              </a>
-              <a href="https://web.facebook.com/?_rdc=1&_rdr#">
-                <FaFacebook className="text-2xl text-blue-700 hover:text-green-700 duration-300" />
-              </a>
-              <a href="https://www.linkedin.com/in/mugabe-prince-2b377621b">
-                <FaLinkedin className="text-2xl text-blue-700 hover:text-primary duration-300" />
-              </a>
-            </div>
+        
+            <p className="mt-4 text-white">
+              <strong>Kigali, Rwanda</strong>
+            </p>
+            <p className="mt-2 text-white">
+              <strong>Gasabo district </strong>
+            </p>
+            <p className="mt-2 text-white">
+              <strong>Gisozi Sector </strong>
+            </p>
+            
           </div>
+
 
           {/* Map Section */}
           <div className="flex-1 min-w-[250px] py-8 px-4">
@@ -71,11 +71,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </section>xa
+      </section>
 
       {/* Copyright Section */}
-      <div className="bg-green-800 py-4 text-center text-gray-400">
-        <p>&copy; {new Date().getFullYear()} Volcano Expense Pro. All Rights Reserved.</p>
+      <div className="bg-white py-4 text-center text-green-700">
+        <p>&copy; {new Date().getFullYear()} AWUEP. All Rights Reserved.</p>
       </div>
     </div>
   );
