@@ -562,191 +562,202 @@ function AdminHome() {
       </div>
     
         {/* User Analytics Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              User Registration Trends
-            </h3>
-            <div className="h-48">
-              <Bar data={chartData.histogram} options={chartOptions}>
-                <XAxis>
-                  <Label value="Time Period" offset={0} position="insideBottom" />
-                </XAxis>
-                <YAxis>
-                  <Label value="Number of Users" angle={-90} position="insideLeft" />
-                </YAxis>
-              </Bar>
-            </div>
-          </div>
-    
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              User Distribution
-            </h3>
-            <div className="h-48">
-              <Doughnut data={chartData.doughnut} options={doughnutOptions} />
-            </div>
-          </div>
-    
-          <div className="bg-white p-6 rounded-lg shadow-md h-64">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Predictions by User Type
-            </h3>
-            <div className="h-48">
-              <Line data={chartData.waterfall} options={chartOptions}>
-                <XAxis>
-                  <Label value="User Type" offset={0} position="insideBottom" />
-                </XAxis>
-                <YAxis>
-                  <Label value="Predictions Count" angle={-90} position="insideLeft" />
-                </YAxis>
-              </Line>
-            </div>
-          </div>
-        </div>
+        {/* User Analytics Section */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div className="bg-white p-6 rounded-lg shadow-md h-80">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      User Registration Trends
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Shows the number of new user registrations over the last 5 days, broken down by user role (Admin vs User).
+    </p>
+    <div className="h-48">
+      <Bar data={chartData.histogram} options={chartOptions}>
+        <XAxis>
+          <Label value="Time Period" offset={0} position="insideBottom" />
+        </XAxis>
+        <YAxis>
+          <Label value="Number of Users" angle={-90} position="insideLeft" />
+        </YAxis>
+      </Bar>
+    </div>
+  </div>
+
+  <div className="bg-white p-6 rounded-lg shadow-md h-80">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      User Distribution
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Displays the total distribution of users by role. This helps understand the composition of your user base.
+    </p>
+    <div className="h-48">
+      <Doughnut data={chartData.doughnut} options={doughnutOptions} />
+    </div>
+  </div>
+
+  <div className="bg-white p-6 rounded-lg shadow-md h-80">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      Predictions by User Type
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Tracks prediction activity over the last 5 days, showing which user types are most active in generating predictions.
+    </p>
+    <div className="h-48">
+      <Line data={chartData.waterfall} options={chartOptions}>
+        <XAxis>
+          <Label value="User Type" offset={0} position="insideBottom" />
+        </XAxis>
+        <YAxis>
+          <Label value="Predictions Count" angle={-90} position="insideLeft" />
+        </YAxis>
+      </Line>
+    </div>
+  </div>
+</div>
     
         {/* Analytics Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Water Usage Trends */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Water Usage Trends
-            </h3>
-            <div className="h-64">
-              {/* <p className="text-sm text-gray-600 mb-4">
-                Displays average water requirements over time. Higher peaks indicate increased irrigation needs during specific periods.
-              </p> */}
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={waterUsageData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date">
-                    <Label value="Date" offset={0} position="insideBottom" />
-                  </XAxis>
-                  <YAxis>
-                    <Label value="Usage" angle={-90} position="insideLeft" />
-                  </YAxis>
-                  <RechartsTooltip />
-                  <Area
-                    type="monotone"
-                    dataKey="usage"
-                    stroke="#8884d8"
-                    fill="#00C49F"
-                    fillOpacity={0.3}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-    
-          {/* Soil Health Metrics */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Soil Health Metrics
-            </h3>
-            <div className="h-64 md:h-80">
-              {/* <p className="text-sm text-gray-600 mb-4">
-                Shows distribution of soil nutrients and properties. Each segment represents different soil parameters, helping identify potential deficiencies.
-              </p> */}
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={soilHealthData}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy={window.innerWidth >= 768 ? "50%" : "40%"}
-                    outerRadius={window.innerWidth >= 768 ? 80 : 60}
-                    labelLine={false}
-                  >
-                    {soilHealthData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <RechartsTooltip formatter={(value) => `${value.toFixed(2)}`} />
-                  <RechartsLegend
-                    layout={window.innerWidth >= 768 ? "vertical" : "horizontal"}
-                    align={window.innerWidth >= 768 ? "right" : "center"}
-                    verticalAlign={window.innerWidth >= 768 ? "middle" : "bottom"}
-                    wrapperStyle={{
-                      paddingTop: window.innerWidth >= 768 ? 0 : "20px",
-                      fontSize: "12px",
-                    }}
-                    formatter={(value, entry, index) => {
-                      return `${value}: ${soilHealthData[index]?.value.toFixed(2)}`;
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-    
-          {/* Weather Impact */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Weather Impact
-            </h3>
-            <div className="h-64">
-              {/* <p className="text-sm text-gray-600 mb-4">
-                Compares different weather parameters affecting crop growth. Helps understand environmental conditions influence on irrigation needs.
-              </p> */}
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={weatherData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" angle={-45} textAnchor="end" height={60}>
-                    <Label value="Weather Parameters" offset={0} position="insideBottom" />
-                  </XAxis>
-                  <YAxis>
-                    <Label value="Impact (%)" angle={-90} position="insideLeft" />
-                  </YAxis>
-                  <RechartsTooltip />
-                  <Area
-                    type="monotone"
-                    dataKey="value"
-                    fill="#FF8042"
-                    stroke="#8884d8"
-                    fillOpacity={0.6}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-    
-          {/* Performance Metrics */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-4 text-black">
-              Performance Metrics
-            </h3>
-            <div className="h-64 mt-2">
-              {/* <p className="text-sm text-gray-600 mb-4">
-                Tracks performance scores across different aspects of irrigation management. Higher values indicate better efficiency in resource utilization.
-              </p> */}
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={performanceData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" angle={-45} textAnchor="end" height={60}>
-                    <Label value="Metrics" offset={0} position="insideBottom" />
-                  </XAxis>
-                  <YAxis domain={[0, 100]}>
-                    <Label value="Efficiency Score (%)" angle={-90} position="insideLeft" className="mt-4" />
-                  </YAxis>
-                  <RechartsTooltip />
-                  <RechartsLegend />
-                  <Area
-                    type="monotone"
-                    dataKey="score"
-                    fill="#82ca9d"
-                    stroke="#8884d8"
-                    fillOpacity={0.6}
-                    name="Efficiency Score (%)"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
+        {/* Analytics Sections */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {/* Water Usage Trends */}
+  <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      Water Usage Trends
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Displays average water requirements over time. Higher peaks indicate increased irrigation needs during specific periods, helping identify seasonal patterns.
+    </p>
+    <div className="h-64">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={waterUsageData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date">
+            <Label value="Date" offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis>
+            <Label value="Usage (mm/day)" angle={-90} position="insideLeft" />
+          </YAxis>
+          <RechartsTooltip />
+          <Area
+            type="monotone"
+            dataKey="usage"
+            stroke="#8884d8"
+            fill="#00C49F"
+            fillOpacity={0.3}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+
+  {/* Soil Health Metrics */}
+  <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      Soil Health Metrics
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Shows average distribution of soil nutrients and properties across all predictions. Each segment represents different soil parameters - balanced proportions indicate healthy soil conditions.
+    </p>
+    <div className="h-64 md:h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={soilHealthData}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy={window.innerWidth >= 768 ? "50%" : "40%"}
+            outerRadius={window.innerWidth >= 768 ? 80 : 60}
+            labelLine={false}
+          >
+            {soilHealthData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <RechartsTooltip formatter={(value) => `${value.toFixed(2)}`} />
+          <RechartsLegend
+            layout={window.innerWidth >= 768 ? "vertical" : "horizontal"}
+            align={window.innerWidth >= 768 ? "right" : "center"}
+            verticalAlign={window.innerWidth >= 768 ? "middle" : "bottom"}
+            wrapperStyle={{
+              paddingTop: window.innerWidth >= 768 ? 0 : "20px",
+              fontSize: "12px",
+            }}
+            formatter={(value, entry, index) => {
+              return `${value}: ${soilHealthData[index]?.value.toFixed(2)}`;
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+
+  {/* Weather Impact */}
+  <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      Weather Impact Analysis
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Compares average weather parameters affecting crop growth. Higher values indicate stronger environmental factors that influence irrigation requirements and crop selection.
+    </p>
+    <div className="h-64">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={weatherData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" angle={-45} textAnchor="end" height={60}>
+            <Label value="Weather Parameters" offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis>
+            <Label value="Average Value" angle={-90} position="insideLeft" />
+          </YAxis>
+          <RechartsTooltip />
+          <Area
+            type="monotone"
+            dataKey="value"
+            fill="#FF8042"
+            stroke="#8884d8"
+            fillOpacity={0.6}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+
+  {/* Performance Metrics */}
+  <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-lg font-semibold mb-2 text-black">
+      System Performance Metrics
+    </h3>
+    <p className="text-sm text-gray-600 mb-4">
+      Tracks efficiency scores across different aspects of irrigation management. Scores range from 0-100%, with higher values indicating better resource utilization and system performance.
+    </p>
+    <div className="h-64 mt-2">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={performanceData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" angle={-45} textAnchor="end" height={60}>
+            <Label value="Performance Categories" offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis domain={[0, 100]}>
+            <Label value="Efficiency Score (%)" angle={-90} position="insideLeft" className="mt-4" />
+          </YAxis>
+          <RechartsTooltip />
+          <RechartsLegend />
+          <Area
+            type="monotone"
+            dataKey="score"
+            fill="#82ca9d"
+            stroke="#8884d8"
+            fillOpacity={0.6}
+            name="Efficiency Score (%)"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+</div>
     
         {/* Recent Predictions Table */}
         <div className="bg-white rounded-lg shadow-lg p-6">

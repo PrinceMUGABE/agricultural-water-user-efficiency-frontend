@@ -3,8 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/pictures/logo.png";
 import { X } from 'lucide-react';
-import { FaUserCircle, FaUsers, FaSignOutAlt } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { 
+  FaUserCircle, 
+  FaUsers, 
+  FaSignOutAlt, 
+  FaHome,
+  FaChartLine,
+  FaComments,
+  FaUser
+} from "react-icons/fa";
+import { MdDashboard, MdFeedback } from "react-icons/md";
 import { BsEvStationFill } from "react-icons/bs";
 import { Menu } from "lucide-react";
 
@@ -107,31 +115,41 @@ function UserLayout() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex md:items-center md:space-x-4">
-            <button
+              <button
                 onClick={() => handleLinkClick('/user')}
-                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2"
+                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2 transition-colors duration-200"
               >
-                <MdDashboard className="text-xl" />
+                <FaHome className="text-xl" />
                 <span>Home</span>
               </button>
               
               <button
                 onClick={() => handleLinkClick('/user/predictions')}
-                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2"
+                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2 transition-colors duration-200"
               >
-                <BsEvStationFill className="text-xl" />
+                <FaChartLine className="text-xl" />
                 <span>Predictions</span>
               </button>
+
+              <button
+                onClick={() => handleLinkClick('/user/feedbacks')}
+                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2 transition-colors duration-200"
+              >
+                <MdFeedback className="text-xl" />
+                <span>Feedback</span>
+              </button>
+
               <button
                 onClick={() => handleLinkClick(`/user/profile/${userId}`)}
-                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2"
+                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2 transition-colors duration-200"
               >
-                <FaUserCircle className="text-xl" />
+                <FaUser className="text-xl" />
                 <span>Profile</span>
               </button>
+              
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-white hover:bg-green-600 rounded-md flex items-center space-x-2"
+                className="px-4 py-2 text-white hover:bg-red-600 rounded-md flex items-center space-x-2 transition-colors duration-200"
               >
                 <FaSignOutAlt className="text-xl" />
                 <span>Logout</span>
@@ -157,30 +175,41 @@ function UserLayout() {
           </button>
 
           <div className="flex flex-col pt-16 space-y-1">
-          <button
+            <button
               onClick={() => handleLinkClick('/user')}
-              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2"
+              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2 transition-colors duration-200"
             >
-              <MdDashboard className="text-lg" />
+              <FaHome className="text-lg" />
               <span>Home</span>
             </button>
+            
             <button
               onClick={() => handleLinkClick('/user/predictions')}
-              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2"
+              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2 transition-colors duration-200"
             >
-              <BsEvStationFill className="text-lg" />
+              <FaChartLine className="text-lg" />
               <span>Predictions</span>
             </button>
+
+            <button
+              onClick={() => handleLinkClick('/user/feedbacks')}
+              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2 transition-colors duration-200"
+            >
+              <MdFeedback className="text-lg" />
+              <span>Feedback</span>
+            </button>
+            
             <button
               onClick={() => handleLinkClick(`/user/profile/${userId}`)}
-              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2"
+              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2 transition-colors duration-200"
             >
-              <FaUserCircle className="text-lg" />
+              <FaUser className="text-lg" />
               <span>Profile</span>
             </button>
+            
             <button
               onClick={handleLogout}
-              className="px-6 py-3 text-sm font-medium text-white hover:bg-green-600 text-left flex items-center space-x-2"
+              className="px-6 py-3 text-sm font-medium text-white hover:bg-red-600 text-left flex items-center space-x-2 transition-colors duration-200"
             >
               <FaSignOutAlt className="text-lg" />
               <span>Logout</span>

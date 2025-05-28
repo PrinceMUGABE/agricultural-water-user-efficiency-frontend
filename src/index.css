@@ -42,3 +42,12 @@ html {
 }
 
 }
+
+@keyframes animate-underline {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.animate-underline {
+  animation: animate-underline 1s ease-out forwards;
+}

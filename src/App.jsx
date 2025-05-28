@@ -29,6 +29,8 @@ import UserPredictions from "./components/pages/user/IrrigationPredictions.jsx";
 import AdminProfile from "./components/pages/admin/AdminProfile.jsx";
 import UserProfile from "./components/pages/user/UserProfile.jsx";
 import UserHome from "./components/pages/user/Home.jsx";
+import Admin_Manage_Feedbacks from "./components/pages/admin/manage_feedbacks.jsx";
+import User_Manage_Feedbacks from "./components/pages/user/feedbacks.jsx";
 
 
 
@@ -69,6 +71,7 @@ const App = () => {
             <Route path="/admin/createUser/" element={<CreateUser />} />
 
             <Route path="/admin/predictions" element={<Admin_Manage_Irrigation_predictions />} />
+            <Route path="/admin/feedbacks" element={<Admin_Manage_Feedbacks />} />
             <Route path="/admin/profile/:id" element={<AdminProfile />} />
 
           </Route>
@@ -79,6 +82,7 @@ const App = () => {
           <Route path="/user" element={<UserLayout />}>
             <Route index element={<UserHome />} />
             <Route path="/user/predictions" element={<UserPredictions />} />
+            <Route path="/user/feedbacks" element={<User_Manage_Feedbacks />} />
             <Route path="/user/profile/:id" element={<UserProfile />} />
      
           </Route>

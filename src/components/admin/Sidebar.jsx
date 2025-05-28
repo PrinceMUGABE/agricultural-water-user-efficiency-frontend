@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import { 
+  FaUsers, 
+  FaUserCircle, 
+  FaSignOutAlt, 
+  FaChartLine,
+  FaUser
+} from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { BsEvStationFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,65 +44,86 @@ function Sidebar() {
   };
 
   const Sidebar_Links = [
-    { id: 1, name: "Dashboard", path: "/admin", icon: <MdDashboard /> },
-    { id: 2, name: "Users", path: "/admin/users", icon: <FaUsers /> },
-    { id: 3, name: "Predictions", path: "/admin/predictions", icon: <BsEvStationFill /> },
-    { id: 4, name: "Profile", path: `/admin/profile/${userId}`, icon: <FaUserCircle /> },
+    { 
+      id: 1, 
+      name: "Dashboard", 
+      path: "/admin", 
+      icon: <MdDashboard className="text-xl" />
+    },
+    { 
+      id: 2, 
+      name: "Users", 
+      path: "/admin/users", 
+      icon: <FaUsers className="text-xl" />
+    },
+    { 
+      id: 3, 
+      name: "Predictions", 
+      path: "/admin/predictions", 
+      icon: <FaChartLine className="text-xl" />
+    },
+    { 
+      id: 4, 
+      name: "Profile", 
+      path: `/admin/profile/${userId}`, 
+      icon: <FaUser className="text-xl" />
+    },
   ];
 
   return (
-    <div className="w-8 md:w-56 fixed left-0 top-0 z-10 h-screen bg-green-900 shadow-md overflow-y-auto mr-12">
+    <div className="h-screen bg-gray-800 text-white w-16 md:w-64 transition-all duration-300 flex flex-col">
       {/* Sidebar Logo */}
-      <div className="mb-8 flex justify-center md:block">
-        <img src={Logo} alt="Logo" className="ml-8 w-10 md:w-20 py-6" />
+      <div className="p-4 border-b border-gray-700">
+        <div className="flex items-center justify-center md:justify-start">
+          <img 
+            src={Logo} 
+            alt="Logo" 
+            className="w-8 h-8 md:w-10 md:h-10"
+          />
+          <span className="hidden md:block ml-3 text-lg font-semibold">
+            Admin Panel
+          </span>
+        </div>
       </div>
 
       {/* Sidebar Links */}
-      <ul className="mt-6 space-y-6">
+      <div className="flex-1 py-4">
         {Sidebar_Links.map((link, index) => (
-          <li key={index} className="relative">
-            <div
-              className={`font-medium rounded-md py-2 px-5 hover:bg-gray-100 hover:text-indigo-500 ${
-                activeLink === index ? "bg-indigo-100 text-indigo-500" : ""
+          <div key={link.id} className="px-2 mb-2">
+            <Link
+              to={link.path}
+              className={`flex items-center justify-center md:justify-start p-3 rounded-lg transition-colors duration-200 hover:bg-gray-700 ${
+                activeLink === index ? "bg-blue-600" : ""
               }`}
               onClick={() => handleLinkClick(index)}
             >
-              <div className="flex items-center justify-between">
-                <Link
-                  to={link.path || "#"}
-                  className="flex items-center justify-center md:justify-start md:space-x-5"
-                >
-                  <span className="text-indigo-500">{link.icon}</span>
-                  {/* Show text only on medium and larger screens */}
-                  <span className="text-sm text-white hover:text-blue-700 md:flex hidden">
-                    {link.name}
-                  </span>
-                </Link>
+              <div className="flex items-center justify-center w-6">
+                {link.icon}
               </div>
-            </div>
-          </li>
+              {/* Show text only on medium and larger screens */}
+              <span className="hidden md:block ml-3 text-sm font-medium">
+                {link.name}
+              </span>
+            </Link>
+          </div>
         ))}
 
         {/* Logout Button */}
-        <li className="relative">
-          <div
-            className="font-medium rounded-md py-2 px-5 hover:bg-gray-100 hover:text-indigo-500"
+        <div className="px-2 mt-auto">
+          <button
             onClick={handleLogout}
+            className="flex items-center justify-center md:justify-start w-full p-3 rounded-lg transition-colors duration-200 hover:bg-red-600 text-red-300 hover:text-white"
           >
-            <div className="flex items-center justify-between cursor-pointer">
-              <div className="flex items-center justify-center md:justify-start md:space-x-5">
-                <span className="text-indigo-500">
-                  <FaSignOutAlt />
-                </span>
-                {/* Show text only on medium and larger screens */}
-                <span className="text-sm text-white hover:text-blue-700 md:flex hidden">
-                  Logout
-                </span>
-              </div>
+            <div className="flex items-center justify-center w-6">
+              <FaSignOutAlt className="text-xl" />
             </div>
-          </div>
-        </li>
-      </ul>
+            {/* Show text only on medium and larger screens */}
+            <span className="hidden md:block ml-3 text-sm font-medium">
+              Logout
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { FaUserCircle, FaUsers, FaSignOutAlt } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { 
+  FaUserCircle, 
+  FaUsers, 
+  FaSignOutAlt, 
+  FaChartLine,
+  FaComments,
+  FaUser
+} from "react-icons/fa";
+import { MdDashboard, MdFeedback } from "react-icons/md";
 import { BsEvStationFill } from "react-icons/bs";
 import { X, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -35,10 +42,36 @@ const Header = () => {
   };
 
   const Navbar_Links = [
-    { id: 1, name: "Dashboard", path: "/admin", icon: <MdDashboard className="text-xl" /> },
-    { id: 2, name: "Users", path: "/admin/users", icon: <FaUsers className="text-xl" /> },
-    { id: 3, name: "Predictions", path: "/admin/predictions", icon: <BsEvStationFill className="text-xl" /> },
-    { id: 4, name: "Profile", path: `/admin/profile/${userId}`, icon: <FaUserCircle className="text-xl" /> },
+    { 
+      id: 1, 
+      name: "Dashboard", 
+      path: "/admin", 
+      icon: <MdDashboard className="text-xl" /> 
+    },
+    { 
+      id: 2, 
+      name: "Users", 
+      path: "/admin/users", 
+      icon: <FaUsers className="text-xl" /> 
+    },
+    { 
+      id: 3, 
+      name: "Predictions", 
+      path: "/admin/predictions", 
+      icon: <FaChartLine className="text-xl" /> 
+    },
+    { 
+      id: 4, 
+      name: "Feedbacks", 
+      path: "/admin/feedbacks", 
+      icon: <MdFeedback className="text-xl" /> 
+    },
+    { 
+      id: 5, 
+      name: "Profile", 
+      path: `/admin/profile/${userId}`, 
+      icon: <FaUser className="text-xl" /> 
+    },
   ];
 
   return (
@@ -56,7 +89,7 @@ const Header = () => {
               <Link
                 key={link.id}
                 to={link.path}
-                className="text-white hover:text-blue-200 flex items-center space-x-2"
+                className="text-white hover:text-blue-200 flex items-center space-x-2 transition-colors duration-200"
               >
                 <span>{link.icon}</span>
                 <span>{link.name}</span>
@@ -64,7 +97,7 @@ const Header = () => {
             ))}
             <button
               onClick={handleLogout}
-              className="text-white hover:text-blue-200 flex items-center space-x-2"
+              className="text-white hover:text-red-200 flex items-center space-x-2 transition-colors duration-200"
             >
               <FaSignOutAlt className="text-xl" />
               <span>Logout</span>
@@ -103,7 +136,7 @@ const Header = () => {
             <Link
               key={link.id}
               to={link.path}
-              className="text-white hover:text-blue-200 flex items-center space-x-3 p-2 rounded-md hover:bg-green-800"
+              className="text-white hover:text-blue-200 flex items-center space-x-3 p-2 rounded-md hover:bg-green-800 transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               <span>{link.icon}</span>
@@ -115,7 +148,7 @@ const Header = () => {
               handleLogout();
               setIsOpen(false);
             }}
-            className="text-white hover:text-blue-200 flex items-center space-x-3 p-2 rounded-md hover:bg-green-800"
+            className="text-white hover:text-red-200 flex items-center space-x-3 p-2 rounded-md hover:bg-green-800 transition-colors duration-200"
           >
             <FaSignOutAlt className="text-xl" />
             <span>Logout</span>

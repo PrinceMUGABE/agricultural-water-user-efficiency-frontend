@@ -170,10 +170,10 @@ function UserHome() {
 
         // Fetch analytics data
         const analyticsEndpoints = {
-          waterUsage: "irrigation/analytics/water-usage/admin/",
-          soilHealth: "irrigation/analytics/soil-health/admin/",
-          weatherImpact: "irrigation/analytics/weather-impact/admin/",
-          efficiency: "irrigation/analytics/efficiency/admin/",
+          waterUsage: "irrigation/analytics/water-usage/user/",
+          soilHealth: "irrigation/analytics/soil-health/user/",
+          weatherImpact: "irrigation/analytics/weather-impact/user/",
+          efficiency: "irrigation/analytics/efficiency/user/",
         };
 
         const analyticsRequests = Object.entries(analyticsEndpoints).map(
@@ -711,7 +711,7 @@ function UserHome() {
                     Location
                   </th>
                   <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Created By
+                    Water Requirement
                   </th>
                   <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Suggested Crop
@@ -734,7 +734,7 @@ function UserHome() {
                       {prediction.location || "N/A"}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {prediction.created_by?.phone_number || "N/A"}
+                      {prediction.water_requirement || "N/A"}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {prediction.predicted_crop || "N/A"}
